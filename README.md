@@ -1,2 +1,2 @@
 # Mentoria
-práticas realizadas durante a Mentoria de Swift dos amigos Lifeados
+práticas realizadas com os amigos Lifeados
