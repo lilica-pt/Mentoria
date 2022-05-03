@@ -7,9 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
         
-    let tableView = UITableView()
+    lazy var tableView: UITableView = {
+        var tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
     
     var data = [String]()
 
@@ -20,17 +25,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         view.addSubview(tableView)
+        
+        registerCell()
+    }
+    
+    func registerCell() {
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -47,4 +57,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("cell tapped")
     }
 }
-
