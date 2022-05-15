@@ -8,18 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-        
+    
     lazy var tableView: UITableView = {
-        var tableView = UITableView()
+            var tableView = UITableView()
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         return tableView
-    }()
+    } ()
+    
     
     var data = [String]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         for x in 0...20 {
             data.append("Essa é a linha \(x)")
         }
@@ -27,13 +31,14 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
         
         registerCell()
+        
     }
     
     func registerCell() {
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: "cell")
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
